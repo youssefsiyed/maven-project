@@ -8,8 +8,13 @@ pipeline {
             post {
                 success {
                     echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
+                    archiveArtifacts artifacts: '**/*.war'
                 }
+            }
+        }
+        stage ('Deploy to Staging'){
+            steps {
+                build job: 'Deploy-To-Stage'
             }
         }
     }
